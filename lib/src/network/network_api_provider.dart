@@ -1,7 +1,6 @@
 import 'package:bloc_base_core/src/data/models/user_token_model.dart';
 import 'package:bloc_base_core/src/network/app_token_storage.dart';
 import 'package:bloc_base_core/src/network/network_config.dart';
-
 import 'package:dio/dio.dart';
 import 'package:fresh_dio/fresh_dio.dart';
 

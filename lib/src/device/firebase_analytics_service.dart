@@ -12,5 +12,6 @@ class FirebaseAnalyticsService {
       {required String eventName, required Map<String, dynamic>? parameters}) {
     _analytics.logEvent(name: eventName, parameters: parameters);
   }
+
   FirebaseAnalytics get analytics => _analytics;
 }

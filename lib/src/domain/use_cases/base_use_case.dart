@@ -1,4 +1,3 @@
-import 'package:bloc_base_core/src/data/base_exception.dart';
 import 'package:bloc_base_core/src/domain/entities/use_case_param.dart';
 import 'package:bloc_base_core/src/utils/logger/logger_tool.dart';
 

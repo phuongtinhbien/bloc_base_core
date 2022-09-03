@@ -1,6 +1,5 @@
 import 'package:bloc_base_core/src/presentation/bloc/base_bloc.dart';
 import 'package:bloc_base_core/src/presentation/widgets/bloc_widgets/callback.dart';
-
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
