@@ -1,4 +1,4 @@
-// import 'package:cooky/infrast/dev_tool/tabs/custom_log_console.dart';
+
 import 'package:logger/logger.dart';
 
 class LogTool {
