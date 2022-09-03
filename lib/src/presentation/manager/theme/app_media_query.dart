@@ -15,14 +15,14 @@ class AppMediaQuery with WidgetsBindingObserver {
 
   void init(SingletonFlutterWindow window) {
     data = MediaQueryData.fromWindow(window).copyWith(textScaleFactor: 1);
-    navigationHeight.onChange(data.padding.bottom);
+    bottomNavigationHeight.onChange(data.padding.bottom);
   }
 
   late MediaQueryData data;
 
   double get statusBarHeight => data.padding.top;
 
-  double get navigationBarHeight => navigationHeight.height;
+  double get navigationBarHeight => bottomNavigationHeight.height;
 
   Size get size => data.size;
 
@@ -35,14 +35,14 @@ class AppMediaQuery with WidgetsBindingObserver {
 
   final KeyBoardHeightNotifier keyboardHeight = KeyBoardHeightNotifier();
 
-  final NavigationBarHeightNotifier navigationHeight =
+  final NavigationBarHeightNotifier bottomNavigationHeight =
       NavigationBarHeightNotifier();
 
   @override
   void didChangeMetrics() {
     final mediaQuery = MediaQueryData.fromWindow(window);
     keyboardHeight.onChange(mediaQuery.viewInsets.bottom);
-    navigationHeight.onChange(mediaQuery.padding.bottom);
+    bottomNavigationHeight.onChange(mediaQuery.padding.bottom);
     if (data.size != mediaQuery.size) {
       data = data.copyWith(size: mediaQuery.size, padding: mediaQuery.padding);
     }
