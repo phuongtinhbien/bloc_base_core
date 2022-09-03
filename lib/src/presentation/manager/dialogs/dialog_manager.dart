@@ -43,7 +43,7 @@ class DialogManager {
   void _showDialog(BuildContext context, dynamic type, Completer completer,
       DialogConfig config) {
     final dialog = _dialogsBuilder[type];
-    final closePopup = () => onPopupClose(context, completer);
+    final closePopup = () => _onPopupClose(context, completer);
     if (dialog != null) {
       showDialog(
           context: context,
@@ -57,8 +57,7 @@ class DialogManager {
     }
   }
 
-  void onPopupClose(BuildContext context, Completer completer,
-      {VoidCallback? onClose}) {
+  void _onPopupClose(BuildContext context, Completer completer) {
     Navigator.pop(context);
     completer.complete();
   }

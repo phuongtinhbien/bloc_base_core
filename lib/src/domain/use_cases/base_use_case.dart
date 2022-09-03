@@ -7,15 +7,12 @@ abstract class BaseUseCase<P extends UseCaseParam, R> {
 
   void onError(Object? e, [StackTrace? stackTrace]) {
     Log.e('', e, stackTrace);
-    if (e is TimeoutException ||
-        e is ConnectionException ||
-        e is ServerException ||
-        e is UnauthorizedException ||
-        e is ServerException) {}
   }
 }
 
+// In this case, no responses were needed. Hence, void. Otherwise, change to appropriate.
 abstract class CompletableUseCase<P extends UseCaseParam>
     extends BaseUseCase<P, void> {}
 
+// In this case, no parameters were needed. Hence, void. Otherwise, change to appropriate.
 abstract class NoParamUseCase<R> extends BaseUseCase<UseCaseParam, R> {}

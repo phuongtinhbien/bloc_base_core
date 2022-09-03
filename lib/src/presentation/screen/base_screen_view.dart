@@ -50,17 +50,24 @@ abstract class BaseScreenState<P extends StatefulWidget,
         listenWhen: listenWhen,
         buildWhen: buildWhen,
         builder: (context, state) {
-          return OrientationBuilder(builder: (orientationContext, orientation) {
-            if (orientation == Orientation.landscape) {
-              return ScreenTypeLayout.builder(
-                mobile: (layout) => buildLandscapeMobile(context, state),
-                tablet: (layout) => buildLandscapeTablet(context, state),
-              );
+          return ResponsiveBuilder(builder: (_, sizingInformation) {
+            if (sizingInformation.deviceScreenType == DeviceScreenType.tablet) {
+              return OrientationBuilder(
+                  builder: (orientationContext, orientation) {
+                if (orientation == Orientation.landscape) {
+                  return buildLandscapeTablet(orientationContext, state);
+                }
+                return buildTablet(orientationContext, state);
+              });
             }
-            return ScreenTypeLayout.builder(
-              mobile: (layout) => buildMobile(layout, state),
-              tablet: (layout) => buildTablet(layout, state),
-            );
+
+            return OrientationBuilder(
+                builder: (orientationContext, orientation) {
+              if (orientation == Orientation.landscape) {
+                return buildLandscapeMobile(orientationContext, state);
+              }
+              return buildMobile(orientationContext, state);
+            });
           });
         },
       ),

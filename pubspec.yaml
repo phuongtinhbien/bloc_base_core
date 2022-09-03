@@ -1,5 +1,5 @@
 name: bloc_base_core
-description: A new Flutter project.
+description: A base core project.
 version: 0.0.1
 homepage:
 
@@ -30,7 +30,7 @@ dependencies:
 
   #storage
   flutter_secure_storage: ^6.0.0
-  responsive_builder: ^0.4.2
+  responsive_builder: ^0.4.3
 
   equatable: ^2.0.5
 
@@ -44,7 +44,7 @@ dependencies:
   package_info_plus: ^1.4.3+1
   logger: ^1.1.0
   tuple: ^2.0.0
-  flutter_image_compress: ^1.1.1
+  flutter_image_compress: ^1.1.2
   sizer: ^2.0.15
 
 dev_dependencies:
