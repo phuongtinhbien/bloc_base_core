@@ -1,7 +1,7 @@
 package com.vuph.bloc_base
 
 import androidx.annotation.NonNull
-
+import android.content.Context
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
