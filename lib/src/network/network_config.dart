@@ -9,12 +9,27 @@ enum BuildMode {
 }
 
 abstract class NetWorkMode {
+  /// A variable that is used to store the base url of the api.
   final String baseUrl;
+
+  /// Used to authenticate the user.
+
   String apiKey;
+
+  /// Used to store the name of the local database.
+
   String localDBName;
+
+  /// Used to set the timeout for the connection.
   int connectTimeout;
+
+  /// Used to set the timeout for the connection.
   int receiveTimeout;
+
+  /// This is used to store the variables that are used in the api.
   Map<String, dynamic> variables;
+
+  /// This is used to enable the network monitor.
   bool enableNetworkMonitor;
 
   NetWorkMode.internal(
@@ -38,6 +53,7 @@ abstract class NetWorkMode {
   }
 }
 
+/// > ProductionMode is a subclass of NetWorkMode
 class ProductionMode extends NetWorkMode {
   ProductionMode(
       {String localDBName = 'local.db',
@@ -55,6 +71,7 @@ class ProductionMode extends NetWorkMode {
             variables: variables);
 }
 
+/// > StagingMode is a subclass of NetWorkMode
 class StagingMode extends NetWorkMode {
   StagingMode(
       {String localDBName = 'local.db',
@@ -72,6 +89,7 @@ class StagingMode extends NetWorkMode {
             variables: variables);
 }
 
+/// > DevelopmentMode is a subclass of NetWorkMode
 class DevelopmentMode extends NetWorkMode {
   DevelopmentMode(
       {String localDBName = 'local.db',

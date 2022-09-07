@@ -12,6 +12,15 @@ class AppTokenStorage extends TokenStorage<UserTokenModel> {
 
   AppTokenStorage(this._currToken, this.appStorage);
 
+  /// > It reads the token from the storage and returns an instance of the
+  /// AppTokenStorage class
+  ///
+  /// Args:
+  ///   storage (AppStorage): The storage object that will be used to store the
+  /// token.
+  ///
+  /// Returns:
+  ///   A Future<AppTokenStorage>
   @factoryMethod
   static Future<AppTokenStorage> init(AppStorage storage) async {
     final token = await storage.read(StorageKey.userTokenData);
@@ -22,18 +31,27 @@ class AppTokenStorage extends TokenStorage<UserTokenModel> {
     return AppTokenStorage(null, storage);
   }
 
+  /// > Delete the current token from the storage and set the current token to null
   @override
   Future<void> delete() async {
     _currToken = null;
     await appStorage.delete(StorageKey.userTokenData);
   }
 
+  /// > Read the current token from the cache
+  ///
+  /// Returns:
+  ///   The current token.
   @override
   Future<UserTokenModel?> read() async {
     return _currToken;
   }
 
-  @override
+ /// > It writes the token to the storage and updates the current token
+  ///
+  /// Args:
+  ///   token (UserTokenModel): The token to be written.
+   @override
   Future<void> write(UserTokenModel token) async {
     _currToken = token;
 

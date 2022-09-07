@@ -7,6 +7,8 @@ part 'base_bloc.g.dart';
 part 'base_event.dart';
 part 'base_state.dart';
 
+/// > BaseBloc is an abstract class that extends Bloc and takes two generic types: T
+/// extends BaseEvent and BaseState
 abstract class BaseBloc<T extends BaseEvent, BaseState>
     extends Bloc<T, BaseState> {
   BaseBloc(BaseState initialState) : super(initialState) {

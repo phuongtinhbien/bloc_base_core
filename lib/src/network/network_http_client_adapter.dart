@@ -138,6 +138,13 @@ class NetworkHttpClientAdapter implements HttpClientAdapter {
     );
   }
 
+  /// If the cancelFuture is not null, then create a new HttpClient, otherwise use
+  /// the default HttpClient.
+  ///
+  /// Args:
+  ///   cancelFuture (Future): A future that will be completed when the request is
+  /// cancelled.
+  ///   timeout (int): The timeout in milliseconds.
   HttpClient _configHttpClient(Future? cancelFuture, int timeout) {
     final connectionTimeout =
         timeout > 0 ? Duration(milliseconds: timeout) : null;
@@ -171,6 +178,7 @@ class NetworkHttpClientAdapter implements HttpClientAdapter {
     return _defaultHttpClient!;
   }
 
+  /// It resets the default http client to null
   void resetHttpClient() {
     _defaultHttpClient = null;
   }

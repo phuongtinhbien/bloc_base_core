@@ -6,6 +6,15 @@ class PackageService {
 
   PackageService(this.packageInfo);
 
+  /// It gets the package version from the platform, and then writes it to the
+  /// storage
+  ///
+  /// Args:
+  ///   storage (AppStorage): The storage object that you created in the previous
+  /// step.
+  ///
+  /// Returns:
+  ///   A Future<PackageService>
   static Future<PackageService> init(AppStorage storage) async {
     final packageInfo = await PackageInfo.fromPlatform();
     final packageService = PackageService(packageInfo);
@@ -13,6 +22,7 @@ class PackageService {
     return packageService;
   }
 
+  /// Getting the version of the app.
   String get version {
     final regex = RegExp(r'[0-9].[0-9].[1-9]');
     final v = packageInfo.version;

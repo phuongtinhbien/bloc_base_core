@@ -7,12 +7,20 @@ import 'package:device_info_plus/device_info_plus.dart';
 class DeviceInfoService {
   final BaseDeviceInfo deviceInfo;
 
-  final String deviceId;
+ /// A unique identifier for the device.
+   final String deviceId;
 
+  /// A string that is sent to the server with every request. It is used to identify
+  /// the device and the browser.
   final String userAgent;
 
   DeviceInfoService(this.deviceInfo, this.deviceId, this.userAgent);
 
+  /// It initializes the device info service.
+  ///
+  /// Args:
+  ///   storage (AppStorage): The storage object that will be used to store the
+  /// device information.
   static Future<DeviceInfoService> init(AppStorage storage) async {
     final deviceInfoPlugin = DeviceInfoPlugin();
     final deviceInfo = await deviceInfoPlugin.deviceInfo;
@@ -24,6 +32,7 @@ class DeviceInfoService {
   }
 
   /// Returns device information for the current platform.
+  /// A getter method that returns the device name.
   String? get deviceName {
     if (Platform.isAndroid) {
       return (deviceInfo as AndroidDeviceInfo).host;
@@ -33,6 +42,12 @@ class DeviceInfoService {
     throw UnsupportedError('Unsupported platform');
   }
 
+  /// It generates a user agent string for the app
+  ///
+  /// Args:
+  ///   storage (AppStorage): The AppStorage object that you created in the previous
+  /// step.
+  ///   deviceInfo (BaseDeviceInfo): The device information object.
   static String genUserAgent(AppStorage storage, BaseDeviceInfo deviceInfo) {
     const keyStorage = SharefKey.userAgent;
     var userAgent = '';
@@ -55,6 +70,17 @@ class DeviceInfoService {
     return userAgent;
   }
 
+  /// > Get the device id from the storage, if it's not there, get it from the
+  /// device info and save it to the storage
+  ///
+  /// Args:
+  ///   storage (AppStorage): The storage object that you created in the previous
+  /// step.
+  ///   deviceInfo (BaseDeviceInfo): This is the device information object that we
+  /// get from the device_info package.
+  ///
+  /// Returns:
+  ///   A Future<String>
   static Future<String> getDeviceId(
       AppStorage storage, BaseDeviceInfo deviceInfo) async {
     const keyStorage = SharefKey.deviceId;
