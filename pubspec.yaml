@@ -15,7 +15,7 @@ dependencies:
   intl: ^0.17.0
   #network
   dio: ^4.0.6
-  dio_firebase_performance: ^0.3.0
+#  dio_firebase_performance: ^0.3.0
   pretty_dio_logger: ^1.1.1
   fresh_dio: ^0.3.2
   internet_connection_checker: ^0.0.1+4
@@ -40,7 +40,7 @@ dependencies:
   meta: ^1.7.0
 
   device_info_plus: ^4.1.2
-  firebase_analytics: ^9.3.3
+#  firebase_analytics: ^9.3.3
   package_info_plus: ^1.4.3+1
   logger: ^1.1.0
   tuple: ^2.0.0
