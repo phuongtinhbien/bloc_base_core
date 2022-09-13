@@ -9,3 +9,5 @@ export 'bloc_widgets/view_state_builder.dart';
 export 'bloc_widgets/view_state_listener.dart';
 export 'bloc_widgets/view_state_selector.dart';
 export 'keyboard_spacing.dart';
+export 'bottom_navigation_spacing.dart';
+
