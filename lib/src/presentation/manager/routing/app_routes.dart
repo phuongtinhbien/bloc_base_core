@@ -16,7 +16,7 @@ abstract class AppRoute {
 
   AppRoute(this.routeList, {this.refreshListenable}){
     router = GoRouter(
-      initialLocation: '/',
+      initialLocation: initialLocation,
       urlPathStrategy: UrlPathStrategy.path,
       refreshListenable: refreshListenable,
       routes: routeList.$routes,
@@ -26,6 +26,8 @@ abstract class AppRoute {
       redirect: redirect,
     );
   }
+
+  String get initialLocation => '/';
 
   /// Used to listen to the route changes.
   List<NavigatorObserver> get observers;
