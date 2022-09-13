@@ -69,6 +69,7 @@ abstract class AppRoutesList {
 
 }
 
+/// It's a custom page that is used to create a slide up transition.
 class SlideUpPage<T> extends CustomTransitionPage<T> {
   SlideUpPage({
     required Widget child,
@@ -100,6 +101,8 @@ class SlideUpPage<T> extends CustomTransitionPage<T> {
             });
 }
 
+/// It's a custom page that is used to fade in and out when navigating between
+/// pages.
 class FadePage<T> extends CustomTransitionPage<T> {
   FadePage({
     required Widget child,
