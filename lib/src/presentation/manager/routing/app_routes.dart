@@ -16,7 +16,7 @@ abstract class AppRoute {
 
   AppRoute(this.routeList, {this.refreshListenable}){
     router = GoRouter(
-      initialLocation: '/welcome',
+      initialLocation: '/',
       urlPathStrategy: UrlPathStrategy.path,
       refreshListenable: refreshListenable,
       routes: routeList.$routes,
