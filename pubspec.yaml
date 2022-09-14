@@ -10,43 +10,28 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.1
-
-  intl: ^0.17.0
-  #network
-  dio: ^4.0.6
-#  dio_firebase_performance: ^0.3.0
-  pretty_dio_logger: ^1.1.1
-  fresh_dio: ^0.3.2
-  internet_connection_checker: ^0.0.1+4
-
-  #Data
-  json_annotation: ^4.6.0
-  #Data
-
-  go_router: ^4.4.1
-  get_it: ^7.2.0
-  injectable: ^1.5.3
-
-  #storage
-  flutter_secure_storage: ^6.0.0
-  responsive_builder: ^0.4.3
-
-  equatable: ^2.0.5
-
-  copy_with_extension: ^4.0.3
-
-  easy_localization: ^3.0.1
-  meta: ^1.7.0
-
-  device_info_plus: ^4.1.2
-#  firebase_analytics: ^9.3.3
-  package_info_plus: ^1.4.3+1
-  logger: ^1.1.0
-  tuple: ^2.0.0
-  flutter_image_compress: ^1.1.2
-  sizer: ^2.0.15
-  plugin_platform_interface: ^2.1.2
+  flutter_bloc:
+  intl:
+  dio:
+  pretty_dio_logger:
+  fresh_dio:
+  internet_connection_checker:
+  json_annotation:
+  go_router:
+  get_it:
+  injectable:
+  flutter_secure_storage:
+  responsive_builder:
+  equatable:
+  copy_with_extension:
+  easy_localization:
+  meta:
+  device_info_plus:
+  package_info_plus:
+  logger:
+  tuple:
+  flutter_image_compress:
+  plugin_platform_interface:
   rxdart:
 
 dev_dependencies:
