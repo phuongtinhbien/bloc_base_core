@@ -7,9 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 part 'base_bloc.g.dart';
-
 part 'base_event.dart';
-
 part 'base_state.dart';
 
 /// > BaseBloc is an abstract class that extends Bloc and takes two generic types: T
