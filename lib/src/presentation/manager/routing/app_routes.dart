@@ -14,6 +14,7 @@ abstract class AppRoute {
   /// pages.
   late final GoRouter router;
 
+
   AppRoute(this.routeList, {this.refreshListenable}){
     router = GoRouter(
       initialLocation: initialLocation,
