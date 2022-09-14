@@ -1,12 +1,12 @@
 part of 'theme_manager_cubit.dart';
 
 /// It's a class that holds the current theme mode and the current theme
-class ThemeManagerState extends Equatable {
+class ThemeManagerState<T extends AppTheme> extends Equatable {
   /// It's a property that holds the current theme mode.
   final ThemeMode mode;
 
   /// It's a property that holds the current theme.
-  final AppTheme theme;
+  final T theme;
 
   const ThemeManagerState({this.mode = ThemeMode.light, required this.theme});
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class AppTheme {
+class AppTheme<T extends AppThemeOptions> {
   /// Setting the status bar color to transparent.
   final SystemUiOverlayStyle? systemUiOverlayStyle;
 
@@ -9,7 +9,7 @@ class AppTheme {
   final ThemeData data;
 
   /// A way to pass in an optional class that can be used to customize the theme.
-  final AppThemeOptions? options;
+  final T? options;
 
   const AppTheme({required this.data, this.options, this.systemUiOverlayStyle});
 

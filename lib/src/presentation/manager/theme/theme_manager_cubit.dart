@@ -8,11 +8,15 @@ part './theme_manager_state.dart';
 class ThemeManagerCubit extends Cubit<ThemeManagerState> {
   /// A getter that returns the light theme.
   final AppTheme light;
+
   /// A getter that returns the dark theme.
   final AppTheme dark;
 
-  ThemeManagerCubit({required this.light, required this.dark})
-      : super(ThemeManagerState(theme: light));
+  ThemeManagerCubit(
+      {required this.light,
+      required this.dark,
+      ThemeMode mode = ThemeMode.light})
+      : super(ThemeManagerState(theme: light, mode: mode));
 
   /// > It emits a new state with the theme mode and the theme that corresponds to
   /// the theme mode
