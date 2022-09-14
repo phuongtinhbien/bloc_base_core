@@ -24,7 +24,7 @@ dependencies:
   json_annotation: ^4.6.0
   #Data
 
-  go_router: ^4.3.0
+  go_router: ^4.4.1
   get_it: ^7.2.0
   injectable: ^1.5.3
 
@@ -53,12 +53,12 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
-  json_serializable: ^6.3.1
-  build_runner: ^2.2.0
-  retrofit_generator: ^4.0.3+1
-  retrofit: ^3.0.1+1
-  injectable_generator: ^1.5.4
-  copy_with_extension_gen: ^4.0.3
+  json_serializable:
+  build_runner:
+  retrofit_generator:
+  retrofit:
+  injectable_generator:
+  copy_with_extension_gen:
 flutter:
 
   plugin:
