@@ -38,14 +38,16 @@ class _AppScaffoldState extends ScaffoldState {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    return Column(
-      children: [
-        Expanded(child: super.build(context)),
-        if (_resizeToAvoidBottomInset)
-          KeyboardSpacing(
-            color: widget.backgroundColor ?? themeData.scaffoldBackgroundColor,
-          )
-      ],
+    return Material(
+      child: Column(
+        children: [
+          Expanded(child: super.build(context)),
+          if (_resizeToAvoidBottomInset)
+            KeyboardSpacing(
+              color: widget.backgroundColor ?? themeData.scaffoldBackgroundColor,
+            )
+        ],
+      ),
     );
   }
 
