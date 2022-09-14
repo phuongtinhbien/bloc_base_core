@@ -1,7 +1,7 @@
 name: bloc_base_core
 description: A base core project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/phuongtinhbien/bloc_base_core
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
