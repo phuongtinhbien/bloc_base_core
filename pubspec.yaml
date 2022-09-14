@@ -47,6 +47,7 @@ dependencies:
   flutter_image_compress: ^1.1.2
   sizer: ^2.0.15
   plugin_platform_interface: ^2.1.2
+  rxdart:
 
 dev_dependencies:
   flutter_test:

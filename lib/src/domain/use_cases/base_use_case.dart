@@ -1,9 +1,15 @@
+import 'dart:async';
+import 'dart:isolate';
+
 import 'package:bloc_base_core/src/domain/entities/use_case_param.dart';
 import 'package:bloc_base_core/src/utils/logger/logger_tool.dart';
+import 'package:flutter/foundation.dart';
+import 'package:get_it/get_it.dart';
+import 'package:rxdart/rxdart.dart';
 
 /// `BaseUseCase` is an abstract class that defines a `call` method that takes an
 /// optional parameter of type `UseCaseParam` and returns a `Future` of type `R`
-abstract class BaseUseCase<P extends UseCaseParam, R> {
+abstract class BaseUseCase<P extends UseCaseParam, R> extends Disposable {
   Future<R> call([P? params]);
 
   void onError(Object? e, [StackTrace? stackTrace]) {
@@ -20,3 +26,5 @@ abstract class CompletableUseCase<P extends UseCaseParam>
 /// In this case, no parameters were needed. Hence, void. Otherwise, change to appropriate.
 /// `NoParamUseCase` is a class that extends `BaseUseCase` and takes no parameters
 abstract class NoParamUseCase<R> extends BaseUseCase<UseCaseParam, R> {}
+
+
