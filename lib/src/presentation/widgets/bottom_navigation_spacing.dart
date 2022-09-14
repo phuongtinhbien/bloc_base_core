@@ -17,7 +17,7 @@ class BottomNavigationSpacing extends StatelessWidget {
             color: color ?? const Color(0x00000000),
 
             child: SizedBox(
-              height: AppMediaQuery().keyboardHeight.height,
+              height: AppMediaQuery().bottomNavigationHeight.height,
             ),
           );
         });
