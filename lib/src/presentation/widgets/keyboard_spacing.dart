@@ -13,11 +13,9 @@ class KeyboardSpacing extends StatelessWidget {
     return AnimatedBuilder(
         animation: AppMediaQuery().keyboardHeight,
         builder: (_, child) {
-          return ColoredBox(
+          return Container(
             color: color ?? const Color(0x00000000),
-            child: SizedBox(
-              height: AppMediaQuery().keyboardHeight.height,
-            ),
+            height: AppMediaQuery().keyboardHeight.height,
           );
         });
   }
