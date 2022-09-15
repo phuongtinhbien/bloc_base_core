@@ -13,12 +13,9 @@ class BottomNavigationSpacing extends StatelessWidget {
     return AnimatedBuilder(
         animation: AppMediaQuery().bottomNavigationHeight,
         builder: (_, child) {
-          return ColoredBox(
+          return Container(
             color: color ?? const Color(0x00000000),
-
-            child: SizedBox(
-              height: AppMediaQuery().bottomNavigationHeight.height,
-            ),
+            height: AppMediaQuery().bottomNavigationHeight.height,
           );
         });
   }
