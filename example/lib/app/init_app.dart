@@ -65,10 +65,8 @@ class _TestDialogWidgetState extends State<TestDialogWidget> {
               getIt<AppDialog>().show(context,
                   config: DialogConfig(
                       type: 'test',
-                      barrierDismissible: i%2 ==0,
                       request: DialogRequest(
-                          description: '$i',
-
+                          description: '1',
                           onMainButtonTap: () {},
                           mainButtonTitle: '')));
             }

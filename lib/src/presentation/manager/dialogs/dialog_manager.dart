@@ -33,7 +33,10 @@ class DialogManager {
   /// the type of the dialog, and the value is the builder.
   void registerDialogBuilder(Map<String, DialogBuilder> builders) {
     _dialogsBuilder.addAll(builders);
-    _dialogProcess.distinct().listen((dialog) {
+    _dialogProcess
+        .delay(const Duration(milliseconds: 500))
+        .distinct((previous, next) => previous.item2 != next.item2)
+        .listen((dialog) {
       _showDialog(dialog.item1, dialog.item2);
     });
   }
@@ -49,7 +52,9 @@ class DialogManager {
   /// DialogConfig()
   void show(BuildContext context, {required DialogConfig config}) {
     final packDialog = Tuple2(context, config);
-    _queue.addLast(packDialog);
+    if (!_queue.any((element) => element.item2 == packDialog.item2)) {
+      _queue.addLast(packDialog);
+    }
 
     if (!_dialogProcess.hasValue ||
         _dialogProcess.value.item2.completer.isCompleted) {
@@ -64,7 +69,6 @@ class DialogManager {
       }
     });
   }
-
 
   /// `_showDialog` is a function that is used to show a dialog. It takes a
   /// `BuildContext` and a `DialogConfig` object as parameters. It then uses the
@@ -190,7 +194,7 @@ class DialogConfig extends Equatable {
     required this.type,
     this.barrierDismissible = true,
     this.request,
-    this.barrierColor = Colors.black54,
+    this.barrierColor = Colors.black38,
   }) {
     completer = Completer();
   }
