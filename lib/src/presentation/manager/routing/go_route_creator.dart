@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -69,11 +71,11 @@ abstract class AppGoRouteData extends GoRouteData {
     return creator.pageBuilder?.call(context, this) ?? super.buildPage(context);
   }
 
-  @override
-  /// Used to redirect to another route.
-  String? redirect() {
-    return creator.redirect?.call(this) ?? super.redirect();
-  }
+  // @override
+  // /// Used to redirect to another route.
+  // FutureOr<String?> redirect() {
+  //   return  null;
+  // }
 
   /// `go` is a method that is used to navigate to a route.
   void go(BuildContext context) => context.go(location, extra: this);

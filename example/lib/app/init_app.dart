@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:bloc_base_core/bloc_base_core.dart';
+import 'package:example/app/dialogs/app_dialog.dart';
 import 'package:flutter/material.dart';
 
 class InitApp extends StatelessWidget {
@@ -38,7 +39,44 @@ class InitApp extends StatelessWidget {
     //         );
     //       }),
     // );
-    return App();
+    return App(
+      child: MaterialApp(
+        home: TestDialogWidget(),
+      ),
+    );
+  }
+}
+
+class TestDialogWidget extends StatefulWidget {
+  const TestDialogWidget({Key? key}) : super(key: key);
+
+  @override
+  State<TestDialogWidget> createState() => _TestDialogWidgetState();
+}
+
+class _TestDialogWidgetState extends State<TestDialogWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            for (var i = 0; i < 10; i++) {
+              getIt<AppDialog>().show(context,
+                  config: DialogConfig(
+                      type: 'test',
+                      barrierDismissible: i%2 ==0,
+                      request: DialogRequest(
+                          description: '$i',
+
+                          onMainButtonTap: () {},
+                          mainButtonTitle: '')));
+            }
+          },
+          child: Text('Test Dialog'),
+        ),
+      ),
+    );
   }
 }
 

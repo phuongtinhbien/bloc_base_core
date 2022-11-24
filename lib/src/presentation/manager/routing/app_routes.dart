@@ -18,7 +18,6 @@ abstract class AppRoute {
   AppRoute(this.routeList, {this.refreshListenable}){
     router = GoRouter(
       initialLocation: initialLocation,
-      urlPathStrategy: UrlPathStrategy.path,
       refreshListenable: refreshListenable,
       routes: routeList.$routes,
       debugLogDiagnostics: true,
@@ -38,7 +37,7 @@ abstract class AppRoute {
   Page<void> errorPageBuilder(BuildContext context, GoRouterState state);
 
   /// Used to redirect the user to a different route.
-  String? redirect(GoRouterState state) => null;
+  String? redirect(BuildContext context, GoRouterState state) => null;
 
   /// `dispose` is called when the object is removed from the tree, and it's used to
   /// free up resources

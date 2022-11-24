@@ -1,5 +1,6 @@
 import 'package:bloc_base_core/bloc_base_core.dart';
 import 'package:example/app/app_config.config.dart';
+import 'package:example/app/dialogs/app_dialog.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -20,6 +21,7 @@ class AppConfig {
   static Future<void> init(BuildMode mode) async {
 
     await initDependencies(mode);
+    getIt.registerSingleton<AppDialog>(AppDialog()..init());
 
     configLogging();
   }
