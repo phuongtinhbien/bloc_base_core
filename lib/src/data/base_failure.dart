@@ -5,10 +5,3 @@ abstract class BaseFailure extends Error {
   BaseFailure({this.code, this.message});
 }
 
-class NoInternetFailure extends BaseFailure {
-  NoInternetFailure();
-}
-
-class UnExpectedFailure extends BaseFailure {
-  UnExpectedFailure({super.message});
-}

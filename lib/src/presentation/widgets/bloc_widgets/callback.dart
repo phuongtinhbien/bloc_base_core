@@ -16,6 +16,9 @@ typedef RefreshingCallback<T> = void Function(BuildContext context, T data);
 /// successfully, but a null element was returned.
 typedef EmptyCallback = void Function(BuildContext context);
 
+/// Defining a function type.
+typedef ReadyCallback = void Function(BuildContext context);
+
 /// Callback function for an error. It contains an [error] that has caused
 /// which may allow a view to react differently on different errors.
 typedef ErrorCallback = void Function(BuildContext context, BaseFailure error);
@@ -45,6 +48,7 @@ typedef RefreshingBuilder<T> = Widget Function(BuildContext context, T? data);
 /// Builder function for no result. The data was fetched
 /// successfully, but a null element was returned.
 typedef EmptyBuilder = Widget Function(BuildContext context);
+
 
 /// Builder function for an error. It contains an [error] that has caused
 /// which may allow a view to react differently on different errors.

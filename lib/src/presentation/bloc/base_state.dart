@@ -2,7 +2,7 @@ part of 'base_bloc.dart';
 
 enum ViewStateEnums { ready, loading, refreshing, success, empty, error }
 
-enum ActionStateEnums { loading, refreshing, success, empty, error }
+enum ActionStateEnums { ready, processing, refreshing, success, error }
 
 abstract class BaseState extends Equatable {
   const BaseState();
@@ -18,18 +18,20 @@ class ActionState<T> extends BaseState {
   final BaseFailure? error;
 
   const ActionState(
-      {this.status = ActionStateEnums.loading, required this.data, this.error});
+      {this.status = ActionStateEnums.processing,
+      required this.data,
+      this.error});
 
   @override
   List get props => [status, data, error];
 
-  bool get isLoading => status == ActionStateEnums.loading;
+  bool get isLoading => status == ActionStateEnums.processing;
 
   bool get isRefreshing => status == ActionStateEnums.refreshing;
 
   bool get isSuccess => status == ActionStateEnums.success;
 
-  bool get isEmpty => status == ActionStateEnums.empty;
+  bool get isReady => status == ActionStateEnums.ready;
 
   bool get isError => status == ActionStateEnums.error;
 }

@@ -14,7 +14,7 @@ typedef ActionStateBuilderCondition = bool Function(
 /// [ActionStateBuilder] is responsible for building the UI based on the [ActionState].
 /// It's a wrapper over the [BlocBuilder] widget so it accepts a [bloc] object and
 /// a set of handy callbacks, which corresponds to each possible state:
-/// [loading] builder for the data loading state,
+/// [processing] builder for the data loading state,
 /// [refreshing] builder for the data refreshing state,
 /// [success] builder for the data success state,
 /// [empty] builder for for no result state,
@@ -31,7 +31,6 @@ class ActionStateBuilder<T, B extends BlocBase<ActionState>>
       LoadingBuilder? onLoading,
       RefreshingBuilder<T>? onRefreshing,
       SuccessBuilder<T>? onSuccess,
-      EmptyBuilder? onEmpty,
       ErrorBuilder? onError,
       ActionStateBuilderCondition? buildWhen,
       Widget child = const SizedBox.shrink()})
@@ -40,14 +39,14 @@ class ActionStateBuilder<T, B extends BlocBase<ActionState>>
           bloc: bloc,
           buildWhen: buildWhen,
           builder: (context, state) {
-            if (state.status == ActionStateEnums.loading) {
+            if (state.status == ActionStateEnums.processing) {
               return onLoading?.call(context, state.data) ?? child;
             } else if (state.status == ActionStateEnums.refreshing) {
               return onRefreshing?.call(context, state.data) ?? child;
             } else if (state.status == ActionStateEnums.success) {
               return onSuccess?.call(context, state.data) ?? child;
-            } else if (state.status == ActionStateEnums.empty) {
-              return onEmpty?.call(context) ?? child;
+            } else if (state.status == ActionStateEnums.ready) {
+              return onReady?.call(context) ?? child;
             } else if (state.status == ActionStateEnums.error) {
               return onError?.call(context, state.error!) ?? child;
             } else {

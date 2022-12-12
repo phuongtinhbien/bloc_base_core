@@ -24,6 +24,12 @@ abstract class BaseBloc<T extends BaseEvent, BaseState>
     WidgetsBinding.instance.addObserver(this);
   }
 
+  @visibleForOverriding
+  @override
+  void onError(Object error, StackTrace stackTrace) {
+    super.onError(error, stackTrace);
+  }
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (_isMounted) {

@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// [ActionStateListener] is a wrapper over the [BlocListener] widget so it accepts
 /// a [bloc] object as well as a [child] widget and a set of handy callbacks
 /// corresponding to a given state:
-/// [loading] callback for the data loading state,
+/// [processing] callback for the data loading state,
 /// [refreshing] callback for the data refreshing state,
 /// [success] callback for the data success state,
 /// [empty] callback for for no result state,
@@ -28,7 +28,7 @@ class ActionStateListener<T, B extends BlocBase<BaseState>>
     LoadingCallback? onLoading,
     RefreshingCallback<T>? onRefreshing,
     SuccessCallback<T>? onSuccess,
-    EmptyCallback? onEmpty,
+    ReadyCallback? onReady,
     ErrorCallback? onError,
     Widget? child,
   }) : super(
@@ -38,14 +38,14 @@ class ActionStateListener<T, B extends BlocBase<BaseState>>
           child: child,
           listener: (context, state) {
             if (state is ActionState) {
-              if (state.status == ActionStateEnums.loading) {
+              if (state.status == ActionStateEnums.processing) {
                 onLoading?.call(context);
               } else if (state.status == ActionStateEnums.refreshing) {
                 onRefreshing?.call(context, state.data);
               } else if (state.status == ActionStateEnums.success) {
                 onSuccess?.call(context, state.data);
-              } else if (state.status == ActionStateEnums.empty) {
-                onEmpty?.call(context);
+              } else if (state.status == ActionStateEnums.ready) {
+                onReady?.call(context);
               } else if (state.status == ActionStateEnums.error) {
                 onError?.call(context, state.error!);
               }

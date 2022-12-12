@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import 'package:bloc_base_core/src/domain/entities/use_case_param.dart';
-import 'package:bloc_base_core/src/utils/logger/logger_tool.dart';
+import 'package:bloc_base_core/bloc_base_core.dart';
 import 'package:get_it/get_it.dart';
 
 /// `BaseUseCase` is an abstract class that defines a `call` method that takes an
@@ -9,13 +8,10 @@ import 'package:get_it/get_it.dart';
 abstract class BaseUseCase<P extends UseCaseParam, R> extends Disposable {
   Future<R> call([P? params]);
 
-  void onError(Object? e, [StackTrace? stackTrace]) {
-    Log.e('', e, stackTrace);
-  }
+  BaseException onError(Object? e, [StackTrace? stackTrace]);
 
   @override
-  FutureOr onDispose() {
-  }
+  FutureOr onDispose() {}
 }
 
 /// In this case, no responses were needed. Hence, void. Otherwise, change to appropriate.

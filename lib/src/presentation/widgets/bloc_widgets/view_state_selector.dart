@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// It's a wrapper over the [BlocBuilder] widget so it accepts a [bloc] object and
 /// a set of handy callbacks, which corresponds to each possible state:
 /// [ready] builder for the the initial state,
-/// [loading] builder for the data loading state,
+/// [processing] builder for the data loading state,
 /// [refreshing] builder for the data refreshing state,
 /// [success] builder for the data success state,
 /// [empty] builder for for no result state,
