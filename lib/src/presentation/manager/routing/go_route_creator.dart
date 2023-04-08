@@ -61,14 +61,14 @@ abstract class AppGoRouteData extends GoRouteData {
 
   @override
   /// A function that returns a widget.
-  Widget build(BuildContext context) {
-    return creator.builder?.call(context, this) ?? super.build(context);
+  Widget build(BuildContext context, GoRouterState state) {
+    return creator.builder?.call(context, this) ?? super.build(context, state);
   }
 
   @override
   /// Used to create a `Page` from a `GoRoute`.
-  Page<void> buildPage(BuildContext context) {
-    return creator.pageBuilder?.call(context, this) ?? super.buildPage(context);
+  Page<void> buildPage(BuildContext context, GoRouterState state) {
+    return creator.pageBuilder?.call(context, this) ?? super.buildPage(context, state);
   }
 
   // @override
@@ -81,7 +81,7 @@ abstract class AppGoRouteData extends GoRouteData {
   void go(BuildContext context) => context.go(location, extra: this);
 
   /// Pushing a new route onto the stack.
-  void push(BuildContext context) => context.push(location, extra: this);
+  Future<T?> push<T extends Object?>(BuildContext context) => context.push<T>(location, extra: this);
 
   /// Replacing the current route with the new route.
   void replace(BuildContext context) => context.replace(location, extra: this);

@@ -27,23 +27,24 @@ class NetworkHttpClientAdapter implements HttpClientAdapter {
       throw Exception(
           "Can't establish connection after [HttpClientAdapter] closed!");
     }
-    final httpClient = _configHttpClient(cancelFuture, options.connectTimeout);
+    final httpClient = _configHttpClient(
+        cancelFuture, options.connectTimeout?.inMilliseconds ?? 0);
     final reqFuture = httpClient.openUrl(options.method, options.uri);
 
-    void _throwConnectingTimeout() {
+    void throwConnectingTimeout() {
       throw DioError(
         requestOptions: options,
         error: 'Connecting timed out [${options.connectTimeout}ms]',
-        type: DioErrorType.connectTimeout,
+        type: DioErrorType.connectionTimeout,
       );
     }
 
     late HttpClientRequest request;
     try {
       request = await reqFuture;
-      if (options.connectTimeout > 0) {
-        request = await reqFuture
-            .timeout(Duration(milliseconds: options.connectTimeout));
+      if ((options.connectTimeout?.inMilliseconds ?? 0) > 0) {
+        request =
+            await reqFuture.timeout(options.connectTimeout ?? Duration.zero);
       } else {
         request = await reqFuture;
       }
@@ -54,11 +55,11 @@ class NetworkHttpClientAdapter implements HttpClientAdapter {
       });
     } on SocketException catch (e) {
       if (e.message.contains('timed out')) {
-        _throwConnectingTimeout();
+        throwConnectingTimeout();
       }
       rethrow;
     } on TimeoutException {
-      _throwConnectingTimeout();
+      throwConnectingTimeout();
     }
 
     request
@@ -68,8 +69,8 @@ class NetworkHttpClientAdapter implements HttpClientAdapter {
     if (requestStream != null) {
       // Transform the request data
       var future = request.addStream(requestStream);
-      if (options.sendTimeout > 0) {
-        future = future.timeout(Duration(milliseconds: options.sendTimeout));
+      if ((options.sendTimeout?.inMilliseconds ?? 0) > 0) {
+        future = future.timeout(options.sendTimeout ?? Duration.zero);
       }
       try {
         await future;
@@ -87,8 +88,8 @@ class NetworkHttpClientAdapter implements HttpClientAdapter {
     // client has connected to the server.
     final receiveStart = DateTime.now().millisecondsSinceEpoch;
     var future = request.close();
-    if (options.receiveTimeout > 0) {
-      future = future.timeout(Duration(milliseconds: options.receiveTimeout));
+    if ((options.receiveTimeout?.inMilliseconds ?? 0) > 0) {
+      future = future.timeout(options.receiveTimeout ?? Duration.zero);
     }
     late HttpClientResponse responseStream;
     try {
@@ -104,9 +105,9 @@ class NetworkHttpClientAdapter implements HttpClientAdapter {
     final stream =
         responseStream.transform<Uint8List>(StreamTransformer.fromHandlers(
       handleData: (data, sink) {
-        if (options.receiveTimeout > 0 &&
+        if ((options.receiveTimeout?.inMilliseconds ?? 0) > 0 &&
             DateTime.now().millisecondsSinceEpoch - receiveStart >
-                options.receiveTimeout) {
+                (options.receiveTimeout?.inMilliseconds ?? 0)) {
           sink.addError(
             DioError(
               requestOptions: options,

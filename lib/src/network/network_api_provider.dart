@@ -47,9 +47,9 @@ abstract class NetworkApiProvider<T> {
     dio.options = BaseOptions(
       baseUrl: mode.baseUrl,
       contentType: 'application/json; charset=utf-8',
-      connectTimeout: mode.connectTimeout,
-      receiveTimeout: mode.receiveTimeout,
-      sendTimeout: mode.connectTimeout,
+      connectTimeout: Duration(milliseconds: mode.connectTimeout),
+      receiveTimeout: Duration(milliseconds: mode.receiveTimeout),
+      sendTimeout: Duration(milliseconds: mode.connectTimeout),
     );
     _initToken();
     initDynamicHeader();
